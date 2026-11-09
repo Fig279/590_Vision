@@ -2,13 +2,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
-/// Optional add-on: toggles vision from its own Input Action, so no existing
-/// controller script or Input Actions asset needs to be edited.
-/// Add this to the player (or any object) and untick "Use Built In Toggle Key"
-/// on the VisionManager. Rebind or add bindings (e.g. a gamepad button) in the Inspector.
+/// used to turn on and off the enhanced vision manager
+/// this woud likely be on a player script but I didn't want to touch the script 
 /// </summary>
 public class VisionToggleInput : MonoBehaviour
 {
+    // the key used to turn on / off the vision enhancement mode, if no specification assumes v(for vision)
     [SerializeField]
     private InputAction toggleAction = new InputAction("ToggleVision", InputActionType.Button, "<Keyboard>/v");
 
@@ -24,6 +23,10 @@ public class VisionToggleInput : MonoBehaviour
         toggleAction.Disable();
     }
 
+    /// <summary>
+    /// turns on the VisionManager
+    /// </summary>
+    /// <param name="ctx"></param>
     private void OnTogglePerformed(InputAction.CallbackContext ctx)
     {
         if (VisionManager.Instance != null)
